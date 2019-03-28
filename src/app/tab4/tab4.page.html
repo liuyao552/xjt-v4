@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-toolbar mode='ios'>
+		<ion-title>消息</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="f8bg" [class.nodata-content]="loaded && noMessages">
+	<ion-refresher (ionRefresh)="doRefresh($event)" #refresherObj>
+		<ion-refresher-content refreshingText="正在加载数据"></ion-refresher-content>
+	</ion-refresher>
+	<div *ngIf="loaded && noMessages" class="nulldata">
+		<img src="assets/img/tip/nodata.jpeg" />
+		<p style="text-align:center;">您还没有消息哦</p>
+	</div>
+	<div *ngIf="!newsDatas" style="text-align:center;margin-top: 46%;">
+		<ion-spinner style="top:10px;"></ion-spinner>
+		拼命加载中...
+	</div>
+	<div *ngFor="let data of newsDatas;let i =index;" class="messages_list">
+		<ion-button Expand='full' color="primary-contrast" *ngIf="data && data.content" class="news_list" (click)="messagesList(data.eventType)">
+			<div class="news_list_left" slot="start">
+				<img src="assets/img/messages/alarm.png" *ngIf="data.eventType==-1" />
+				<img src="assets/img/messages/task.png" *ngIf="data.eventType==2" />
+				<img src="assets/img/messages/review.png" *ngIf="data.eventType==3" />
+				<img src="assets/img/messages/repair.png" *ngIf="data.eventType==4" />
+				<img src="assets/img/messages/engine.png" *ngIf="data.eventType==-2" />
+				<img src="assets/img/messages/presure.png" *ngIf="data.eventType==-3" />
+				<img src="assets/img/messages/projectReview.png" *ngIf="data.eventType==-4" />
+				<img src="assets/img/messages/hydrant.png" *ngIf="data.eventType==5" />
+				<img src="assets/img/solveMethod/electricFire_icon.png" *ngIf="data.eventType==6" />
+				<img src="assets/img/solveMethod/electricFire_icon.png" *ngIf="data.eventType==10" />
+				<img src="assets/img/icons/waterLogging.png" *ngIf="data.eventType==7" />
+				<img src="assets/img/messages/gas.png" *ngIf="data.eventType==8" />
+				<img src="assets/img/smock.png" *ngIf="data.eventType==9" />
+			</div>
+			<div class="news_list_right" slot="end">
+				<div class="news_content">
+					<p>{{ data.type }}</p>
+					<p>{{ data.content?data.content:"您还没有消息" }}</p>
+				</div>
+				<div class="news_time">
+					<span>{{ data.createTime == null?'':(data.createTime |
+						amDateFormat:config.dateTimeViewFormat).substring(0,10)==today?(data.createTime
+						| amDateFormat:config.dateTimeViewFormat).substring(11,16):(data.createTime |
+						amDateFormat:config.dateTimeViewFormat).substring(5,11).replace("-","月").replace("
+						","日") }}</span>
+					<span *ngIf="data.count>0">
+						<a>{{ data.count>999?"999+" : data.count }}</a>
+					</span>
+				</div>
+			</div>
+		</ion-button>
+	</div>
+</ion-content>

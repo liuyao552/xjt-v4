@@ -1,0 +1,19 @@
+.scan-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    --ion-color-primary: transparent;
+    width: 70px;
+    height: 56px;
+    --box-shadow: none;
+    z-index: 999;
+    img {
+        width: 60px !important;
+        max-width: 60px;
+    }
+}
+
+ion-tab-bar {
+    --color-selected: var(--ion-color-danger, #fe5741);
+}

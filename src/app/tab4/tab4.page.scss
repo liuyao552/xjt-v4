@@ -1,0 +1,111 @@
+.messages_list {
+    max-height: 5.2rem;
+}
+
+.news_list {
+    padding: 0;
+    font-size: 1.2rem;
+    overflow: hidden;
+    height: 5.2rem;
+    background: #fff;
+    text-align: left;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.news_list_left {
+    float: left;
+    width: 5rem;
+    height: 5.2rem;
+    text-align: center;
+}
+
+.news_list_right {
+    float: left;
+    overflow: hidden;
+    width: calc(100% - 5rem);
+    height: 5.2rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.news_list_left img {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-top: 0.8rem;
+}
+
+.news_list_right .news_content {
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    float: left;
+    width: calc(100% - 6rem);
+}
+
+.news_time {
+    width: 6rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    float: right;
+}
+
+.news_list_right .news_content p {
+    line-height: 2rem;
+    color: #353535;
+    margin: 0;
+}
+
+.news_content p:last-child {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: 0;
+    color: #acacac;
+}
+
+.news_list_right .news_time span {
+    height: 1.5rem;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.news_time span:first-child {
+    margin-bottom: 0.5rem;
+    color: #acacac;
+}
+
+.news_list_right .news_time span:last-child a {
+    padding: 2px 6px !important;
+    font-size: 1rem;
+    height: 1rem;
+    border-radius: 10px;
+    background: #fe5741;
+    color: #fff;
+}
+
+ion-button {
+    --padding-start: 0;
+    --padding-end: 0;
+}

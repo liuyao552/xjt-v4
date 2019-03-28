@@ -1,0 +1,18 @@
+app-status-bar {
+    width:3rem;
+    span{
+        font-size: 0.9rem !important;
+    }
+    .red{
+        color:rgb(254, 87, 65)
+    }
+    .green{
+        color:rgb(36, 173, 60)
+    }
+    .round-red{
+        @extend .red;
+    };
+    .round-green{
+        @extend .green;
+    }
+}

@@ -1,0 +1,70 @@
+.user-info .user-avatar {
+    min-height: 7.1rem;
+}
+
+.user-info {
+    min-height: 14.3rem;
+    text-align: left;
+    font-size: 1.4rem;
+    background: #fff;
+}
+
+.info {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #333;
+
+    ion-avatar {
+        margin: 0 auto;
+    }
+}
+
+.user-infolist p:nth-child(1) {
+    margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+.user-infolist p:nth-child(2) {
+    margin: 0.7rem 0;
+}
+
+ion-label {
+    align-items: center;
+    display: flex;
+}
+
+ion-img {
+    width: 1.3rem;
+    margin-right: 1rem;
+}
+
+ion-list {
+    --ion-item-background: #f8f8f8;
+}
+
+ion-item {
+    --min-height: 3.3rem;
+    --ion-item-background: #ffffff;
+    --border-color: #dedede;
+    --padding-start: 1.6rem;
+    --color: #333;
+    font-size: 1.2rem;
+}
+
+.call-item {
+    background: #ffffff;
+    min-height: 3.3rem;
+    height: 3.3rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1.6rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+ion-button {
+    --box-shadow: none;
+}
+
+ion-content {
+    --ion-background-color: #f8f8f8;
+}

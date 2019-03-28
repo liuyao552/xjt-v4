@@ -1,0 +1,7 @@
+{
+  "name": "xjt",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-title>
+      应用
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" #refresherObj>
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- banner图 -->
+  <div class="banner">
+    <!-- <img zoom="false" src="assets/img/application/application_banner.png" style="display: block;"> -->
+  </div>
+
+  <!-- 应用 -->
+  <div class="function">
+    <div class="parent-panel">
+      <span>常用应用</span>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let data of navArr" size="3" (click)="gotoPage(data)">
+          <img src="{{ data | navbar: 'appImg' }}" />
+          <h6 class="homebar-button-text">{{
+        data | navbar: "text"
+      }}</h6>
+        <ion-badge color="danger" *ngIf=" homeData.examineCount > 0  && data == 18"
+          [class.moveleft]="homeData.examineCount>99" [class.moveLeft]="homeData.examineCount>999">
+          {{homeData.examineCount>999?"999+" : homeData.examineCount}}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- 新闻 -->
+  <div class="xjtnews">
+    <div class="box">
+      <div class="parent-panel" (click)="openFindPage()" tappable>
+        <span>消检通头条</span><span>更多<img src="assets/img/homebar/arrow.png" /></span>
+      </div>
+      <div (click)="openNews(homeNews)" *ngIf="homeNews" class="homeNews" tappable>
+        <img [src]="getUmageUrl(homeNews.titleImage)" />
+        <p style="overflow: hidden;display:-webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+          {{ homeNews?.name }}</p>
+        <p class="new-detail">{{homeNews?.homeDescription}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

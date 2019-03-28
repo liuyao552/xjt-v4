@@ -1,0 +1,42 @@
+to-top {
+    .wapper{
+        background-color: rgba(255, 255, 255, 0.9);
+        width:3.9rem;
+        height: 3.9rem;
+        overflow: hidden;
+        text-align: center;
+        position:fixed;
+        font-size: 1.1rem;
+        display: flex;
+        border-radius: 50%;
+        z-index: 999;
+        color:rgb(177,179,185);
+    }
+    .flex-container {
+        border:rgb(177,179,185) 1px solid;
+        background-color: rgba(255, 255, 255, 0.9);
+        width:3.9rem;
+        height: 3.9rem;
+        overflow: hidden;
+        text-align: center;
+        position:fixed;
+        border-radius:50%;
+        flex-direction: column ;
+        justify-content:center;
+        display: flex;
+        vertical-align: middle;
+    }
+    
+    .flex-item {
+        flex:1;
+        position: relative;
+        bottom: -4px;
+    }
+    .flex-item1 {
+        background-color: rgb(177,179,185);
+        width: 90%;
+        height: 1px;
+        margin: 0px 5%; 
+    }
+}
+

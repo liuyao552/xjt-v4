@@ -1,0 +1,97 @@
+drag {
+    div {
+        position: relative;
+        overflow: hidden;
+        height: 272px;
+        &.row-2 {
+            height:200px;
+        }
+        &.row-1 {
+            height:128px;
+        }
+        &.row-0 {
+            height:56px;
+        }
+    }
+    h5 {
+        font-weight: normal;
+        font-size: 1.2rem;
+        margin: 0;
+        padding-left: 4%;
+        line-height: 50px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        width: 20%;
+        height: 50px;
+        list-style: none;
+        text-align: center;
+        transition: all 0.3s linear;
+        font-size: 0;
+        height: 60px;
+        background-color: rgba(248, 248, 248, 0.6);
+        padding-top: 5px;
+        position: absolute;
+        left: 4%;
+        img {
+            width: 30px;
+            height: 30px;
+        }
+        span {
+            font-size: 10px;
+            line-height: 24px;
+            display: block;
+        }
+        &:nth-child(2n) {
+            left: 28%;
+        }
+        &:nth-child(4n) {
+            left: 76%;
+        }
+        &:nth-child(4n-1) {
+            left: 52%;
+        }
+        @for $i from 1 through 4 {
+            &:nth-child(4n+#{$i}) {
+                top: 50px;
+            }
+        }
+        @for $i from 5 through 8 {
+            &:nth-child(4n+#{$i}) {
+                top: 122px;
+            }
+        }
+        @for $i from 9 through 12 {
+            &:nth-child(4n+#{$i}) {
+                top: 194px;
+            }
+        }
+        @for $i from 13 through 16 {
+            &:nth-child(4n+#{$i}) {
+                top: 266px;
+            }
+        }
+        .delete {
+            width: 14px;
+            height: 14px;
+            background: #fe5741;
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            border-radius: 50%;
+            &::before {
+                content: "";
+                width: 80%;
+                height:2px;
+                background-color: #fff;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+<i [class.round-red]="status!==0" [class.shan]="status!==0"></i>
+<i [class.round-green]="status===0"></i>
+<span class="red" *ngIf="status!==0" >故障</span>
+<span class="green" *ngIf="status===0" >正常</span>

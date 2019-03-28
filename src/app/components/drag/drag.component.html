@@ -1,0 +1,10 @@
+<div [class.row-2]="currentRow==2" [class.row-1]="currentRow==1" [class.row-0]="currentRow==0" >
+  <h5>我的应用</h5>
+  <ul id="drag-ul">
+    <li  *ngFor="let data of datas" class="drag-item" (touchstart)="start($event)" (touchmove)="move($event)" (touchend)="end($event)">
+      <img src="{{ data | navbar:'img'}}" />
+      <span>{{ data | navbar:"text"}}</span>
+      <div class="delete" (click)="deleteItem(data)"></div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,8 @@
+<div [hidden]="hidden" class="wapper" [style.bottom]="bottom" [style.right]="right">
+  <div *ngIf="isScrolling && total" class="flex-container">
+      <div class="flex-item">{{current||0}}</div>
+      <div class="flex-item1"></div>
+      <div class="flex-item">{{total||0}}</div>
+  </div>
+  <img *ngIf="!isScrolling || !total" (click)="toTop()" src="img/top.png" alt="">
+</div>

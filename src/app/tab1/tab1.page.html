@@ -1,0 +1,149 @@
+<ion-menu side="end" type="overlay" menuId="homefilter"
+  swipeGesture="false" contentId="homecontent">
+  <ion-header>
+    <ion-toolbar mode="md">
+      <ion-title>请选择项目</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="projectId" >
+        <ion-item *ngFor="let project of projects; trackBy: trackByFn" (click)="changeProject(project)">
+          <ion-label>{{ project.name }}</ion-label>
+          <ion-radio slot="end" value={{project.id}}></ion-radio>
+        </ion-item>
+        <ion-item *ngFor="let project of joins" (changeProject)="show(project)">
+          <ion-label>{{ project.name }}</ion-label>
+          <ion-radio slot="end" value={{project.id}}></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!-- 头部项目切换 -->
+<ion-header>
+  <ion-toolbar mode="ios">
+    <!-- <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons> -->
+    <ion-title>{{ hometitle }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showMenue()" class="menu">
+        <img src="assets/img/homebar/home-filter.png" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- 页面内容部分 -->
+<ion-content id="homecontent" class="home-page overView-page">
+  <!-- 下拉刷新 -->
+  <ion-refresher (ionRefresh)="doRefresh($event)" #refresherObj>
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <img src="assets/img/slider/slider1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/slider/slider2.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/slider/slider3.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/slider/slider4.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/slider/slider5.jpg" />
+    </ion-slide>
+  </ion-slides>
+
+  <!-- 首页拥有所有权限时 -->
+  <div *ngIf="showContent && !waterGage" class="home-page-content" style="z-index:11;">
+    <!-- 首页解决方案 -->
+    <div class="parent-panel" (click)="openSolveMethod()" tappable>
+      <span>我的应用</span>
+      <span>更多<img src="assets/img/homebar/arrow.png" /></span>
+    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let data of navArr" size="3" (click)="gotoPage(data, select)">
+          <img src="{{ data | navbar: 'img' }}" />
+          <h6 class="homebar-button-text">{{
+        data | navbar: "text"
+      }}</h6>
+          <ion-badge color="danger" *ngIf="homeData.patrolSumCount > 0 && data == 1"
+            [class.moveleft]="homeData.patrolSumCount > 99" [class.moveLeft]="homeData.patrolSumCount > 999">{{
+          homeData.patrolSumCount > 999 ? "999+" : homeData.patrolSumCount
+        }}</ion-badge>
+          <ion-badge color="danger" *ngIf="homeData.maintainSumCount > 0 && data == 2"
+            [class.moveleft]="homeData.maintainSumCount > 99" [class.moveLeft]="homeData.maintainSumCount > 999">{{
+          homeData.maintainSumCount > 999
+            ? "999+"
+            : homeData.maintainSumCount
+        }}</ion-badge>
+          <ion-badge color="danger" *ngIf="homeData.testingSumCount > 0 && data == 3"
+            [class.moveleft]="homeData.testingSumCount > 99" [class.moveLeft]="homeData.testingSumCount > 999">{{
+          homeData.testingSumCount > 999 ? "999+" : homeData.testingSumCount
+        }}</ion-badge>
+          <ion-badge color="danger" *ngIf="homeData.examineCount > 0 && data == 18"
+            [class.moveleft]="homeData.examineCount > 99" [class.moveLeft]="homeData.examineCount > 999">{{
+          homeData.examineCount > 999 ? "999+" : homeData.examineCount
+        }}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- 消防百事通消防资讯 -->
+    <div class="parent-panel" (click)="goSolution()" tappable>
+      <span>物联网解决方案</span>
+      <span>更多<img src="assets/img/homebar/arrow.png" /></span>
+    </div>
+    <div (click)="goSolution()" class="homeNews" tappable>
+      <img src="assets/img/solution/outbanner.png" style="width: 100%;max-height:14.6rem; " />
+    </div>
+  </div>
+
+  <!-- 水压权限部分 -->
+  <div class="water_gage_box" *ngIf="waterGage">
+    <ion-row>
+      <ion-col>
+        <div class="img-box">
+          <img src="assets/img/overView/water_gege1.png" />
+        </div>
+      </ion-col>
+      <ion-col>
+        <h2>
+          水压监测
+          <!-- <ion-icon name="heart-outline"></ion-icon> -->
+        </h2>
+        <p>实时监控水压变化情况</p>
+        <button (click)="openWaterGage()">
+          点击查看
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="img-box">
+          <img src="assets/img/overView/cccf1.png" />
+        </div>
+      </ion-col>
+      <ion-col>
+        <h2>
+          CCCF查询
+        </h2>
+        <p>扫码查询消防产品证书信息</p>
+        <button (click)="openCCCF()">
+          立即使用
+        </button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="!dataLoaded && !pullText"
+    style="text-align:center;position: absolute;left: 46%;top: 48%;color: #ddd;z-index: 111;">
+    <ion-spinner></ion-spinner>
+  </div>
+</ion-content>

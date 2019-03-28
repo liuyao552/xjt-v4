@@ -1,0 +1,265 @@
+<ion-header class="login-header">
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<meta charset="utf-8" />
+<ion-content class="login login-page">
+  <ion-list>
+    <div class="login-logo">
+      <img src="assets/img/user/logo-big.png" />
+    </div>
+    <div class="login-signup">
+      <span tappable [class.active]="!issignup" (click)="goLogin()">登录</span
+      ><span tappable [class.active]="issignup" (click)="goSignup()">注册</span>
+    </div>
+
+    <form #loginForm="ngForm" novalidate class="login-form">
+      <div *ngIf="!issignup">
+        <ion-item class="item-login1 login-username">
+          <ion-input
+            [(ngModel)]="login.username"
+            name="username"
+            type="text"
+            #username="ngModel"
+            class="input-div"
+            required
+            placeholder="请输入手机号或用户名"
+            (ionChange)="resetPassword()"
+            clearInput
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item class="item-login1 item-login2 login-pw">
+          <ion-input
+            [(ngModel)]="login.password"
+            name="password"
+            (keyup)="savePassword()"
+            type="password"
+            #password="ngModel"
+            class="input-div pswordtype"
+            required
+            placeholder="请输入密码"
+          >
+          </ion-input>
+          <div
+            ion-button
+            outline
+            item-right
+            class="pw-change"
+            (click)="changePwView(null)"
+          >
+            <img *ngIf="!pwvisible" src="assets/img/user/show.png" />
+            <img *ngIf="pwvisible" src="assets/img/user/hide.png" />
+          </div>
+        </ion-item>
+      </div>
+      <!--  注册 -->
+      <div *ngIf="issignup && !nextSignup">
+        <ion-item class="item-login1 login-username" [class.mgb75]="errorphone">
+          <ion-input
+            [(ngModel)]="signup.telphone"
+            name="telphone"
+            type="number"
+            #telphone="ngModel"
+            (input)="isphone()"
+            class="input-div"
+            required
+            placeholder="请输入手机号"
+          >
+          </ion-input>
+        </ion-item>
+        <p class="pwerror" *ngIf="errorphone">手机号码不正确</p>
+        <ion-item
+          class="item-login1 item-login2 login-pw"
+          [class.mgb75]="errorInput"
+          [class.mgt75]="errorphone"
+        >
+          <ion-input
+            [(ngModel)]="signup.password"
+            name="password"
+            type="password"
+            #password="ngModel"
+            class="input-div pswordtype1"
+            (keyup)="showStrength()"
+            required
+            placeholder="请输入密码"
+          >
+          </ion-input>
+          <div
+            ion-button
+            outline
+            item-right
+            class="pw-change"
+            (click)="changePwView1()"
+          >
+            <img *ngIf="!pwvisible1" src="assets/img/user/show.png" />
+            <img *ngIf="pwvisible1" src="assets/img/user/hide.png" />
+          </div>
+        </ion-item>
+        <p class="pwerror" *ngIf="errorInput">
+          6-18位密码，需包含数字和大小写字母，不能用特殊字符
+        </p>
+        <ion-item
+          class="item-login1 item-login2 login-captcha"
+          [class.mgt75]="errorInput"
+        >
+          <ion-input
+            style="width: 80%;"
+            [(ngModel)]="signup.captcha"
+            name="captcha"
+            type="text"
+            #captcha="ngModel"
+            placeholder="请输入验证码"
+            required
+          >
+          </ion-input>
+          <ion-button
+            item-right
+            shape='round'
+            outline
+            (click)="onGetCaptcha()"
+            color="danger"
+            *ngIf="counter == -1"
+            class="signup-captcha-login captcha-login-item"
+          >
+            {{ captchaname }}
+          </ion-button>
+          <ion-button
+            item-right
+            color="danger"
+            shape='round'
+            *ngIf="counter != -1"
+            class="counter-button-signup captcha-login-item"
+          >
+            {{ counter }}秒后获取
+          </ion-button>
+        </ion-item>
+        <p class="pwerror" *ngIf="errorcaptcha">验证码不正确</p>
+      </div>
+      <!-- 注册二级页面 -->
+      <div *ngIf="issignup && nextSignup">
+        <ion-item
+          class="item-login1 signup-username"
+          [class.mgb75]="errorusername"
+        >
+          <ion-input
+            [(ngModel)]="signup.username"
+            name="username"
+            type="text"
+            #username="ngModel"
+            class="input-div"
+            maxlength="10"
+            (input)="isname()"
+            (ionBlur)="checkUserName()"
+            (keyup)="namelength()"
+            required
+            placeholder="请输入用户名"
+          >
+          </ion-input>
+        </ion-item>
+        <p class="pwerror" *ngIf="errorusername">用户名不能用特殊字符</p>
+        <ion-item
+          class="item-login1 signup-comname"
+          style="margin-bottom: 1rem;"
+          [class.mgt75]="errorusername"
+        >
+          <ion-input
+            [(ngModel)]="signup.comname"
+            name="comname"
+            type="text"
+            #comname="ngModel"
+            class="input-div"
+            required
+            placeholder="请输入公司名称"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item class="agree">
+          <ion-label
+            ><span>阅读并同意</span
+            ><ion-button
+              class="agreement"
+              clear
+              (click)="openAgreementPage()"
+            >
+              《用户协议》
+            </ion-button></ion-label
+          >
+          <ion-checkbox
+            [(ngModel)]="userAgreement"
+            name="agreement"
+          ></ion-checkbox>
+        </ion-item>
+      </div>
+      <ion-row class="login-page-box" *ngIf="!issignup">
+        <ion-col class="mobile">
+          <a color="danger" (click)="onRetrievePassword()">忘记密码</a>
+        </ion-col>
+      </ion-row>
+      <ion-row responsive-sm class="sublogin">
+        <ion-col>
+          <ion-button
+            color="danger"
+            *ngIf="!issignup"
+            shape='round'
+            class="submit-btn"
+            [disabled]="!login.username || !login.password || submitted"
+            (click)="onLogin(loginForm)"
+            type="submit"
+            block
+          >
+            登录</ion-button
+          >
+          <ion-button
+            color="danger"
+            *ngIf="issignup && !nextSignup"
+            class="submit-btn"
+            shape='round'
+            [disabled]="
+              !signup.telphone ||
+              !signup.password ||
+              !signup.captcha ||
+              submitDisabled
+            "
+            (click)="goNext()"
+            block
+          >
+            下一步</ion-button
+          >
+          <ion-button
+            style="margin-top: 10px;"
+            *ngIf="issignup && nextSignup"
+            class="submit-btn"]
+            shape='round'
+            [disabled]="
+              !signup.username ||
+              !signup.comname ||
+              nameexist ||
+              !usernamelength ||
+              comexist ||
+              !userAgreement ||
+              submitted ||
+              errorusername
+            "
+            (click)="onSignup()"
+            type="submit"
+            color="danger"
+            block
+          >
+            注册</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <div
+        tappable
+        *ngIf="issignup && nextSignup"
+        class="goBack-login"
+        (click)="goBack()"
+      >
+        <span> <<</span>返回上一步
+      </div>
+    </form>
+  </ion-list>
+</ion-content>

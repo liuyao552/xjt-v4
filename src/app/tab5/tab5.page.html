@@ -1,0 +1,71 @@
+<ion-header>
+	<ion-toolbar mode="ios">
+		<ion-title>
+			我
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+	<ion-button color='primary-contrast' class="user-info" expand='full' >
+		<div class="info">
+		<ion-avatar><img tappable (error)="onimgerror(this)" [src]="image.src" *ngIf="image.src" (click)="modifyInfo()" /></ion-avatar>
+		<!-- this.src='assets/img/head_geren.png' -->
+		<div class="user-infolist">
+			<p>{{user.name}}</p>
+			<p>{{user.tephone}}</p>
+		</div>
+	</div>
+	</ion-button>
+	<ion-list>
+		<ion-item lines="none" (click)="goAbout()">
+			<ion-img slot="start" src="assets/img/new-user/user01.png"></ion-img>
+			<ion-label>
+				<ion-text>关于我们</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item lines="full" (click)="goHelp()">
+			<ion-img slot="start" src="assets/img/new-user/user02.png"></ion-img>
+			<ion-label>
+				<ion-text>使用帮助</ion-text>
+			</ion-label>
+		</ion-item>
+		<a [href]="'tel:400-902-1239'" class="call-item">
+			<!-- <ion-img src="assets/img/user/tel.png" />客服电话<span style="float:right;">400-902-1239</span> -->
+			<ion-img src="assets/img/new-user/user03.png"></ion-img>客服电话
+		</a>
+		<!-- <ion-button color='primary-contrast' (click)="waiting()">
+			<ion-img src="assets/img/user/vip.png" />增值服务
+		</ion-button> -->
+
+	</ion-list>
+	<ion-list>
+		<ion-item lines="full" (click)="problemBack()">
+			<ion-img slot="start" src="assets/img/new-user/user04.png"></ion-img>
+			<ion-label>
+				<ion-text>问题反馈</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none" (click)="onRetrievePassword()" [disabled]="projectId=='14982273316675f884cb01b97413cbcb'">
+			<ion-img slot="start" src="assets/img/new-user/user05.png"></ion-img>
+			<ion-label>
+				<ion-text>个人设置</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item lines="full" (click)="modifyInfo()" [disabled]="projectId=='14982273316675f884cb01b97413cbcb'">
+			<ion-img slot="start" src="assets/img/new-user/user06.png"></ion-img>
+			<ion-label>
+				<ion-text>修改资料</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item lines="none" (click)="logout()">
+			<ion-img slot="start" src="assets/img/new-user/user07.png"></ion-img>
+			<ion-label>
+				<ion-text>退出登录</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+</ion-content>

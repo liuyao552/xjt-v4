@@ -1,0 +1,55 @@
+<ion-content class="scan-view-page">
+	<div *ngIf="!scaning" class="scantemp"></div>
+	<div *ngIf="scaning" class="scanbox">
+		<div class="scan-top">
+			<p>请将二维码放置于指定框内</p>
+		</div>
+		<div class="scan-middle">
+			<div class="scan-middle-left"></div>
+			<div class="scan-middle-center">
+				<div class="scan-line"></div>
+				<span class="scan-row1"></span>
+				<span class="scan-row2"></span>
+				<span class="scan-col1"></span>
+				<span class="scan-col2"></span>
+			</div>
+			<div class="scan-middle-right"></div>
+		</div>
+		<div class="scan-bottom">
+			<!-- <div>
+			  <img src="img/timg.jpeg" />
+			  <p>任务执行</p>
+		  </div>
+		  <div>
+			  <img src="img/timg.jpeg" />
+			  <p>任务执行</p>
+		  </div>
+		  <div>
+			  <img src="img/timg.jpeg" />
+			  <p>任务执行</p>
+		  </div> -->
+			<!-- <div class="scan-hand" (click)="inputQr()">
+			  <img src="img/hand.png" />
+			  <p>手输编码</p>
+		  </div> -->
+
+			<div tappable class="scan-light" (click)="enableLight()">
+				<img src="img/light.png" />
+				<p>打开手电筒</p>
+			</div>
+
+			<div tappable class="scan-cancel" (click)="back()">取消</div>
+		</div>
+		<!-- <ion-fab bottom right >
+	   <button ion-fab>Share</button>
+	   <ion-fab-list side="top">
+		 <button ion-fab (click)="enableLight()">Facebook</button>
+		 <button ion-fab>Twitter</button>
+		 <button ion-fab>Youtube</button>
+	   </ion-fab-list>
+	   <ion-fab-list side="left">
+		 <button ion-fab>Vimeo</button>
+	   </ion-fab-list>
+	 </ion-fab> -->
+	</div>
+</ion-content>

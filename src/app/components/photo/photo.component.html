@@ -1,0 +1,25 @@
+<div class="lk-uploader__bd">
+  <!-- (click)="imageGallery(elem,gallery,galleryImg)" -->
+  <div class="lk-uploader__input-box" [hidden]="maxLength==images.length">
+    <!-- <input id="uploaderInput" class="lk-uploader__input" type="file" capture="camera" (change)="fileChange($event)" tappable/> -->
+    <input id="uploaderInput" class="lk-uploader__input" type="button" *ngIf="noPermissions" (click)="tipPermissions()" tappable
+    />
+    <input id="uploaderInput" class="lk-uploader__input" type="button" *ngIf="!noPermissions" (click)="openCamera($event)" tappable
+    />
+  </div>
+  <ul class="lk-uploader__files" id="uploaderFiles">
+    <li #elem *ngFor="let img of beforeimg;let index = index" class="lk-uploader__file {{((img.message == null && img.percent == null) || img.percent == 100)?'':'lk-uploader__file_status'}}">
+      <img [class.iosrotate]="isios" [src]="img.src" (click)="preview(index,0)" tappable>
+      <span class="img-cancel-btn" (click)="cancelImgArr(img,index)" tappable>取消</span>
+    </li>
+    <li #elem *ngFor="let img of images;let index = index" class="lk-uploader__file {{((img.message == null && img.percent == null) || img.percent == 100)?'':'lk-uploader__file_status'}}">
+      <img [class.iosrotate]="isios" [src]="img.src" (click)="preview(index,1)" tappable>
+      <span class="img-cancel-btn" (click)="cancelImg(index)" tappable>取消</span>
+      <!-- <span class="img-cancel-btn" (click)="deleteImg(index)" tappable>删除</span> -->
+      <!-- <div *ngIf="img1.percent > 0 || img1.message != null" class="lk-uploader__file-content">
+        {{img1.message == null?'':img1.message}}{{img1.percent?img1.percent+'%':''}}</div>
+        <div *ngIf="img1.warning != null"  class="lk-uploader__file-content">
+              <i class="lk-icon-warn"></i>
+          </div> -->
+    </li>
+  </ul>
