@@ -18,7 +18,6 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { httpInterceptorProviders } from './http-interceptors';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
 import { ExceptionHandler } from './services/exception';
 import { JPush } from '@jiguang-ionic/jpush/ngx';
 import { Badge } from '@ionic-native/badge/ngx';
@@ -41,7 +40,7 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
       }
     }),
     IonicStorageModule.forRoot(),
-    StoreModule.forRoot(reducers, { metaReducers }),
+    // StoreModule.forRoot(reducers, { metaReducers }),
     // PipesModule
   ],
   // exports: [PipesModule],
